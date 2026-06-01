@@ -57,7 +57,6 @@
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
         
-        /* Loading Overlay Style */
         #auth-loading {
             position: fixed;
             inset: 0;
@@ -82,13 +81,12 @@
 </head>
 <body class="font-sans text-brand-text min-h-screen relative">
 
-    <!-- ================= LAYAR LOADING AUTENTIKASI ================= -->
     <div id="auth-loading">
         <div class="spinner mb-4"></div>
         <p class="font-serif italic text-gray-500">Memeriksa Sesi Akses...</p>
     </div>
 
-    <!-- ================= LAYAR LOGIN ================= -->
+    <!-- Halaman Login -->
     <section id="login-screen" class="hidden min-h-screen flex items-center justify-center p-4">
         <div class="bg-white p-8 md:p-10 rounded-2xl border border-brand-border editorial-shadow max-w-md w-full text-center">
             <h1 class="text-4xl font-serif font-bold text-gray-900 mb-2">DNA Dress Code</h1>
@@ -115,33 +113,34 @@
         </div>
     </section>
 
-    <!-- ================= APLIKASI UTAMA ================= -->
+    <!-- Aplikasi Utama -->
     <main id="main-app" class="hidden py-10 px-4 md:px-8">
         <div class="max-w-6xl mx-auto space-y-12 relative">
             
-            <!-- Tombol Logout -->
             <button id="btn-logout" class="absolute top-0 right-0 bg-white border border-gray-200 text-gray-600 hover:text-red-500 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider shadow-sm transition-colors flex items-center gap-2 z-10">
                 <i class="fa-solid fa-power-off"></i> Logout
             </button>
 
-            <!-- Header -->
             <header class="text-center space-y-4 pt-8 md:pt-0">
                 <h3 class="text-sm tracking-[0.3em] text-gray-500 font-semibold uppercase">The Capsule Wardrobe Algorithm</h3>
                 <h1 class="text-5xl md:text-6xl font-serif font-bold text-gray-900 tracking-tight">DNA Dress Code</h1>
                 <p class="max-w-2xl mx-auto text-gray-600 leading-relaxed text-lg text-justify-custom">
-                    Blueprint visual dengan rincian per-item. Panel gambar berfokus pada desain murni, dengan <strong>Kotak Legenda DNA</strong> yang merangkum keseluruhan warna.
+                    Blueprint visual dengan rincian per-item. Panel gambar berfokus pada desain murni, dengan <strong>Kotak Legenda DNA</strong> yang merangkum keseluruhan warna. Output disajikan dalam bentuk <strong>JSON Prompt</strong>.
                 </p>
             </header>
 
-            <!-- Input Section -->
+            <!-- Bagian Input Data -->
             <section id="input-section" class="bg-white p-8 md:p-10 rounded-xl border border-brand-border editorial-shadow max-w-3xl mx-auto">
                 <form id="dna-form" class="space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        
+                        <!-- Tanggal Lahir -->
                         <div class="space-y-2">
                             <label class="block text-xs font-bold text-gray-500 tracking-widest uppercase">Tanggal Lahir <span class="text-red-400">*</span></label>
                             <input type="date" id="dob" required class="w-full bg-gray-50 border border-brand-border focus:border-gray-800 focus:ring-1 focus:ring-gray-800 rounded-lg px-4 py-3 transition-colors outline-none text-lg">
                         </div>
                         
+                        <!-- Gender -->
                         <div class="space-y-2">
                             <label class="block text-xs font-bold text-gray-500 tracking-widest uppercase">Gender <span class="text-red-400">*</span></label>
                             <select id="gender" required class="w-full bg-gray-50 border border-brand-border focus:border-gray-800 focus:ring-1 focus:ring-gray-800 rounded-lg px-4 py-3 transition-colors outline-none text-lg">
@@ -151,26 +150,27 @@
                             </select>
                         </div>
 
-                        <!-- INPUT TINGGI, BERAT, & POSTUR YANG SEMPAT HILANG -->
+                        <!-- Tinggi Badan -->
                         <div class="space-y-2">
                             <label class="block text-xs font-bold text-gray-500 tracking-widest uppercase">Tinggi Badan (cm) <span class="text-red-400">*</span></label>
                             <input type="number" id="height" placeholder="Contoh: 165" required class="w-full bg-gray-50 border border-brand-border focus:border-gray-800 focus:ring-1 focus:ring-gray-800 rounded-lg px-4 py-3 transition-colors outline-none text-lg">
                         </div>
+
+                        <!-- Berat Badan -->
                         <div class="space-y-2">
                             <label class="block text-xs font-bold text-gray-500 tracking-widest uppercase">Berat Badan (kg) <span class="text-red-400">*</span></label>
                             <input type="number" id="weight" placeholder="Contoh: 80" required class="w-full bg-gray-50 border border-brand-border focus:border-gray-800 focus:ring-1 focus:ring-gray-800 rounded-lg px-4 py-3 transition-colors outline-none text-lg">
                         </div>
+
+                        <!-- Karakteristik Tubuh -->
                         <div class="space-y-2 md:col-span-2">
                             <label class="block text-xs font-bold text-gray-500 tracking-widest uppercase">Karakteristik Tubuh <span class="text-red-400">*</span></label>
-                            <select id="body-shape" required class="w-full bg-gray-50 border border-brand-border focus:border-gray-800 focus:ring-1 focus:ring-gray-800 rounded-lg px-4 py-3 transition-colors outline-none text-lg">
-                                <option value="standard">Standar / Proporsional</option>
-                                <option value="buncit">Perut Buncit / Mengembang</option>
-                                <option value="muscular">Dada Bidang / Berotot</option>
-                                <option value="curvy">Pinggul / Paha Besar (Curvy)</option>
+                            <select id="body-shape" required disabled class="w-full bg-gray-50 border border-brand-border focus:border-gray-800 focus:ring-1 focus:ring-gray-800 rounded-lg px-4 py-3 transition-colors outline-none text-lg disabled:bg-gray-200 disabled:text-gray-400 transition-all">
+                                <option value="" disabled selected>Pilih Gender Terlebih Dahulu</option>
                             </select>
                         </div>
 
-                        <!-- INPUT GOLONGAN DARAH -->
+                        <!-- Golongan Darah -->
                         <div class="space-y-2 md:col-span-2">
                             <label class="block text-xs font-bold text-gray-500 tracking-widest uppercase">Golongan Darah <span class="text-red-400">*</span></label>
                             <div class="flex gap-4 mt-2">
@@ -192,6 +192,7 @@
                                 </label>
                             </div>
                         </div>
+
                     </div>
 
                     <button type="submit" class="w-full mt-8 bg-[#2C2C2C] text-white font-serif italic text-xl py-4 rounded-lg hover:bg-black transition-all flex justify-center items-center gap-3">
@@ -200,10 +201,10 @@
                 </form>
             </section>
 
-            <!-- Result Section -->
+            <!-- Bagian Hasil / Output -->
             <section id="result-section" class="hidden space-y-8 fade-in">
                 
-                <!-- DNA Output Info -->
+                <!-- Info Output -->
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
                     <div class="bg-white p-3 rounded-lg border border-brand-border flex flex-col justify-center items-center editorial-shadow text-center">
                         <p class="text-[9px] uppercase tracking-widest text-gray-500 font-bold mb-1">Weton (Aura)</p>
@@ -223,7 +224,7 @@
                     </div>
                 </div>
                 
-                <!-- Legend Box Info Panel -->
+                <!-- Opsi Warna Kapsul -->
                 <div class="bg-brand-accent/10 p-5 rounded-lg border border-brand-accent/30 editorial-shadow text-center">
                     <p class="text-[10px] uppercase tracking-widest text-brand-accent font-bold mb-2"><i class="fa-solid fa-palette mr-1"></i> Capsule Wardrobe Colors</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
@@ -239,48 +240,48 @@
                 </div>
 
                 <div class="flex flex-col lg:flex-row gap-8">
-                    <!-- SISI KIRI: Prompt Box -->
+                    <!-- Sisi Kiri: JSON Prompt -->
                     <div class="flex-1 space-y-6">
                         <div class="bg-white rounded-xl border border-gray-300 editorial-shadow overflow-hidden flex flex-col h-full">
                             <div class="bg-[#1A1A1A] px-6 py-4 flex justify-between items-center relative">
                                 <div class="flex items-center gap-3">
-                                    <i class="fa-solid fa-terminal text-[#D5C4A1]"></i>
-                                    <h3 class="text-white font-semibold text-xs uppercase tracking-widest">Master Midjourney Prompt</h3>
+                                    <i class="fa-solid fa-code text-[#D5C4A1]"></i>
+                                    <h3 class="text-white font-semibold text-xs uppercase tracking-widest">JSON Prompt Master</h3>
                                 </div>
-                                <span class="absolute -bottom-1 left-0 right-0 h-1 bg-[#FFE7B6] block"></span>
                                 <button onclick="copyPrompt()" id="copy-btn-img" class="bg-white/10 hover:bg-white/20 text-white px-4 py-1.5 rounded text-xs font-bold uppercase transition-colors flex items-center gap-2 border border-white/20">
                                     <i class="fa-regular fa-copy"></i> Copy
                                 </button>
                             </div>
                             <div class="p-6 md:p-8 flex-1 bg-gray-50 flex flex-col">
                                 <textarea id="hidden-img-prompt" class="hidden"></textarea>
-                                <p id="display-img-prompt" class="font-mono text-xs leading-relaxed text-gray-800 text-justify-custom bg-white p-5 rounded border border-gray-200 shadow-sm flex-1"></p>
+                                <!-- Format JSON di layar di-styling pakai tag <pre> -->
+                                <pre id="display-img-prompt" class="font-mono text-xs leading-relaxed text-gray-800 bg-white p-5 rounded border border-gray-200 shadow-sm overflow-x-auto custom-scrollbar flex-1 whitespace-pre-wrap word-wrap break-word"></pre>
                             </div>
                         </div>
                     </div>
 
-                    <!-- SISI KANAN: Styling Dossier -->
+                    <!-- Sisi Kanan: Styling Dossier UI -->
                     <div class="w-full lg:w-[450px] bg-white rounded-xl border border-brand-border editorial-shadow p-8 shrink-0 flex flex-col">
                         <div class="text-center mb-6 border-b border-gray-100 pb-6">
                             <h2 class="text-xl font-serif font-bold text-gray-900">Styling Dossier</h2>
                             <p class="text-xs text-gray-500 mt-1.5 uppercase tracking-wider">Clean Basic Info</p>
                         </div>
                         <div class="space-y-4 overflow-y-auto pr-2 custom-scrollbar" id="look-details-container" style="max-height: 550px;">
-                            <!-- Dinamis -->
+                            <!-- Konten Dossier di-generate JS -->
                         </div>
                     </div>
                 </div>
 
                 <div class="text-center pb-10 pt-4">
                     <button onclick="resetApp()" class="text-gray-500 hover:text-gray-900 border-b border-gray-400 pb-1 text-sm font-semibold tracking-wider transition-colors">
-                        <i class="fa-solid fa-rotate-left mr-2"></i> Hitung Ulang Karakter
+                        <i class="fa-solid fa-rotate-left mr-2"></i> Isi Data Baru / Reset
                     </button>
                 </div>
             </section>
         </div>
     </main>
 
-    <!-- ================= SCRIPT LOGIKA APLIKASI ================= -->
+    <!-- ================= SCRIPT LOGIKA UTAMA ================= -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
@@ -297,81 +298,59 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
-        // UI Elements
-        const elLoading = document.getElementById('auth-loading');
-        const elLogin = document.getElementById('login-screen');
-        const elApp = document.getElementById('main-app');
-        const errLogin = document.getElementById('login-error');
-
-        // Auth State Observer
         onAuthStateChanged(auth, (user) => {
-            elLoading.style.opacity = '0';
-            setTimeout(() => {
-                elLoading.style.display = 'none';
-                if (user) {
-                    elLogin.classList.add('hidden');
-                    elApp.classList.remove('hidden');
-                } else {
-                    elApp.classList.add('hidden');
-                    elLogin.classList.remove('hidden');
-                }
-            }, 500);
+            document.getElementById('auth-loading').style.display = 'none';
+            if (user) {
+                document.getElementById('login-screen').classList.add('hidden');
+                document.getElementById('main-app').classList.remove('hidden');
+            } else {
+                document.getElementById('main-app').classList.add('hidden');
+                document.getElementById('login-screen').classList.remove('hidden');
+                // Mengosongkan form login saat status user null (logout/belum login)
+                document.getElementById('login-form').reset();
+            }
         });
 
-        // Login Handler
         document.getElementById('login-form').addEventListener('submit', (e) => {
             e.preventDefault();
             const email = document.getElementById('login-email').value;
             const pass = document.getElementById('login-pass').value;
-            const btn = document.getElementById('btn-login');
-            
-            btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> Memproses...`;
-            btn.disabled = true;
-            errLogin.classList.add('hidden');
-
-            signInWithEmailAndPassword(auth, email, pass)
-                .then(() => {
-                    btn.innerHTML = `Masuk Ke Sistem`;
-                    btn.disabled = false;
-                    document.getElementById('login-form').reset();
-                })
-                .catch((error) => {
-                    btn.innerHTML = `Masuk Ke Sistem`;
-                    btn.disabled = false;
-                    errLogin.innerText = "Login gagal. Email atau password salah.";
-                    errLogin.classList.remove('hidden');
-                });
+            signInWithEmailAndPassword(auth, email, pass).catch(() => document.getElementById('login-error').classList.remove('hidden'));
         });
 
-        // Logout Handler
-        document.getElementById('btn-logout').addEventListener('click', () => {
-            signOut(auth).then(() => {
-                resetApp();
-            });
+        document.getElementById('btn-logout').addEventListener('click', () => signOut(auth));
+
+        // Handler Opsi Karakteristik Tubuh
+        document.getElementById('gender').addEventListener('change', function(e) {
+            const shapeSelect = document.getElementById('body-shape');
+            shapeSelect.disabled = false;
+            shapeSelect.innerHTML = e.target.value === 'man' ? 
+                `<option value="standard">Standar / Proporsional</option><option value="buncit">Perut Buncit</option><option value="muscular">Dada Bidang</option>` :
+                `<option value="standard">Standar / Proporsional</option><option value="hourglass">Jam Pasir</option><option value="pear">Pinggul Lebar</option><option value="plussize">Plus Size</option>`;
         });
 
-        // ================= LOGIKA DNA DRESS CODE =================
-        const shioData = {
-            0: { nama: "Monyet", style: "contemporary streetwear", c1: "Mustard", c2: "Charcoal", c3: "Off-White", cBot1: "Dark Grey", cBot2: "Black", sColF: "Black", sTypF: "Oxfords", sColC: "White", sTypC: "Sneakers" },
-            1: { nama: "Ayam", style: "preppy look", c1: "Navy", c2: "Forest Green", c3: "Beige", cBot1: "Navy", cBot2: "Khaki", sColF: "Dark Brown", sTypF: "Loafers", sColC: "Brown", sTypC: "Chukkas" },
-            2: { nama: "Anjing", style: "smart casual aesthetics", c1: "Earth Brown", c2: "Olive", c3: "Indigo", cBot1: "Brown", cBot2: "Olive", sColF: "Dark Brown", sTypF: "Brogues", sColC: "Tan", sTypC: "Chelsea Boots" },
-            3: { nama: "Babi", style: "quiet luxury", c1: "Pale Pink", c2: "Navy", c3: "Soft Grey", cBot1: "Navy", cBot2: "Charcoal", sColF: "Black", sTypF: "Loafers", sColC: "Black", sTypC: "Minimalist Sneakers" },
-            4: { nama: "Tikus", style: "edgy urban style", c1: "Black", c2: "Maroon", c3: "Dark Grey", cBot1: "Black", cBot2: "Dark Grey", sColF: "Black", sTypF: "Chelsea Boots", sColC: "Black", sTypC: "Leather Sneakers" },
-            5: { nama: "Kerbau", style: "classic workwear", c1: "Olive Green", c2: "Rust", c3: "Khaki", cBot1: "Khaki", cBot2: "Beige", sColF: "Dark Brown", sTypF: "Derbies", sColC: "Brown", sTypC: "Work Boots" },
-            6: { nama: "Macan", style: "bold sartorial", c1: "Burnt Orange", c2: "Black", c3: "Mustard", cBot1: "Black", cBot2: "Dark Grey", sColF: "Black", sTypF: "Double Monks", sColC: "Black", sTypC: "Chelsea Boots" },
-            7: { nama: "Kelinci", style: "soft bespoke tailoring", c1: "Baby Blue", c2: "Mint", c3: "Cream", cBot1: "Navy", cBot2: "Light Grey", sColF: "Navy", sTypF: "Suede Loafers", sColC: "White", sTypC: "Leather Sneakers" },
-            8: { nama: "Naga", style: "high fashion statement", c1: "Burgundy", c2: "Teal", c3: "Gold", cBot1: "Black", cBot2: "Navy", sColF: "Black", sTypF: "Oxfords", sColC: "Black", sTypC: "Velvet Loafers" },
-            9: { nama: "Ular", style: "sleek slim fit monochrome", c1: "Emerald", c2: "Midnight Blue", c3: "Black", cBot1: "Black", cBot2: "Charcoal", sColF: "Dark Brown", sTypF: "Oxfords", sColC: "Black", sTypC: "Chelsea Boots" },
-            10: { nama: "Kuda", style: "elevated athleisure", c1: "Bright Blue", c2: "Crimson", c3: "White", cBot1: "Navy", cBot2: "Grey", sColF: "Grey", sTypF: "Suede Loafers", sColC: "White", sTypC: "Running Shoes" },
-            11: { nama: "Kambing", style: "refined bohemian chic", c1: "Camel", c2: "Mocha", c3: "Sage Green", cBot1: "Beige", cBot2: "Brown", sColF: "Brown", sTypF: "Tassel Loafers", sColC: "Sand", sTypC: "Desert Boots" }
-        };
+        // ------------------ DATA FASHION DNA ------------------
+        const shioData = [
+            { nama: "Monyet", style: "contemporary streetwear", c1: "Charcoal", c2: "Mustard", c3: "Off-White", sColF: "Black", sTypF: "Oxfords", sColC: "White", sTypC: "Sneakers" },
+            { nama: "Ayam", style: "preppy look", c1: "Navy", c2: "Forest Green", c3: "Beige", sColF: "Dark Brown", sTypF: "Loafers", sColC: "Brown", sTypC: "Chukkas" },
+            { nama: "Anjing", style: "smart casual aesthetics", c1: "Earth Brown", c2: "Olive", c3: "Indigo", sColF: "Dark Brown", sTypF: "Brogues", sColC: "Tan", sTypC: "Chelsea Boots" },
+            { nama: "Babi", style: "quiet luxury", c1: "Navy", c2: "Soft Grey", c3: "Pale Pink", sColF: "Black", sTypF: "Loafers", sColC: "Black", sTypC: "Minimalist Sneakers" },
+            { nama: "Tikus", style: "edgy urban style", c1: "Black", c2: "Maroon", c3: "Dark Grey", sColF: "Black", sTypF: "Chelsea Boots", sColC: "Black", sTypC: "Leather Sneakers" },
+            { nama: "Kerbau", style: "classic workwear", c1: "Olive Green", c2: "Rust", c3: "Khaki", sColF: "Dark Brown", sTypF: "Derbies", sColC: "Brown", sTypC: "Work Boots" },
+            { nama: "Macan", style: "bold sartorial", c1: "Burnt Orange", c2: "Black", c3: "Mustard", sColF: "Black", sTypF: "Double Monks", sColC: "Black", sTypC: "Chelsea Boots" },
+            { nama: "Kelinci", style: "soft bespoke tailoring", c1: "Baby Blue", c2: "Mint", c3: "Cream", sColF: "Navy", sTypF: "Suede Loafers", sColC: "White", sTypC: "Leather Sneakers" },
+            { nama: "Naga", style: "high fashion statement", c1: "Burgundy", c2: "Teal", c3: "Gold", sColF: "Black", sTypF: "Oxfords", sColC: "Black", sTypC: "Velvet Loafers" },
+            { nama: "Ular", style: "sleek slim fit monochrome", c1: "Emerald", c2: "Midnight Blue", c3: "Black", sColF: "Dark Brown", sTypF: "Oxfords", sColC: "Black", sTypC: "Chelsea Boots" },
+            { nama: "Kuda", style: "elevated athleisure", c1: "Bright Blue", c2: "Crimson", c3: "White", sColF: "Grey", sTypF: "Suede Loafers", sColC: "White", sTypC: "Running Shoes" },
+            { nama: "Kambing", style: "refined bohemian chic", c1: "Camel", c2: "Mocha", c3: "Sage Green", sColF: "Brown", sTypF: "Tassel Loafers", sColC: "Sand", sTypC: "Desert Boots" }
+        ];
 
         const pasaranData = {
-            "Legi": { name: "Legi", w1: "Sky Blue", w2: "Light Grey", bNet: "Light Grey" },
-            "Pahing": { name: "Pahing", w1: "Brick Red", w2: "Warm Tan", bNet: "Brown" },
-            "Pon": { name: "Pon", w1: "Slate Grey", w2: "Pure White", bNet: "Black" },
-            "Wage": { name: "Wage", w1: "Deep Purple", w2: "Midnight", bNet: "Navy" },
-            "Kliwon": { name: "Kliwon", w1: "Dark Onyx", w2: "Emerald Ash", bNet: "Dark Grey" }
+            "Legi": { name: "Legi", w1: "Sky Blue", w2: "Light Grey" },
+            "Pahing": { name: "Pahing", w1: "Brick Red", w2: "Warm Tan" },
+            "Pon": { name: "Pon", w1: "Slate Grey", w2: "Pure White" },
+            "Wage": { name: "Wage", w1: "Deep Purple", w2: "Midnight" },
+            "Kliwon": { name: "Kliwon", w1: "Dark Onyx", w2: "Emerald Ash" }
         };
 
         const bData = { "A": "sharp tailored fits", "B": "slightly relaxed fits", "AB": "avant-garde styling", "O": "timeless classic cuts" };
@@ -379,21 +358,21 @@
         function getWetonData(date) {
             const d = new Date(date);
             const pasaranArr = ["Legi", "Pahing", "Pon", "Wage", "Kliwon"];
+            const hariArr = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
             const t1 = new Date("1970-01-01T00:00:00Z");
             const diffDays = Math.floor(Math.abs(new Date(date + "T00:00:00Z") - t1) / (1000 * 60 * 60 * 24));
             let pasaranIndex = (new Date(date + "T00:00:00Z") >= t1) ? (3 + diffDays) % 5 : (3 - (diffDays % 5) + 5) % 5;
-            const hariData = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
-            return {
-                full: `${hariData[d.getDay()]} ${pasaranArr[pasaranIndex]}`,
-                pasaranObj: pasaranData[pasaranArr[pasaranIndex]]
+            return { 
+                full: `${hariArr[d.getDay()]} ${pasaranArr[pasaranIndex]}`, 
+                pasaranObj: pasaranData[pasaranArr[pasaranIndex]] 
             };
         }
 
-        // Kalkulasi Body Mass Index (BMI) & Parameter Postur Midjourney
+        // Kalkulasi Postur Tubuh + BMI
         function getBodyPosture(height, weight, gender, shape) {
             const heightM = height / 100;
             const bmi = weight / (heightM * heightM);
-            let heightDesc = ""; let buildDesc = ""; let uiDesc = "";
+            let heightDesc = "", buildDesc = "", uiDesc = "";
 
             if (gender === 'man') {
                 if (height < 165) heightDesc = "short"; else if (height <= 178) heightDesc = "average height"; else heightDesc = "tall";
@@ -412,39 +391,40 @@
             let shapeModifier = "";
             if (shape === 'buncit') { shapeModifier = " with a visible dad bod and protruding belly"; uiDesc += " (Perut Buncit)"; }
             else if (shape === 'muscular') { shapeModifier = " with a broad muscular chest and V-taper frame"; uiDesc += " (Dada Bidang)"; }
-            else if (shape === 'curvy') { shapeModifier = " with a distinct pear-shaped body and wide hips"; uiDesc += " (Pinggul Lebar)"; }
+            else if (shape === 'hourglass') { shapeModifier = " with a distinct hourglass figure"; uiDesc += " (Jam Pasir)"; }
+            else if (shape === 'pear') { shapeModifier = " with a distinct pear-shaped body and wide hips"; uiDesc += " (Pinggul Lebar)"; }
+            else if (shape === 'plussize') { shapeModifier = " with full-figured body"; uiDesc += " (Plus Size)"; }
 
-            return { mjPrompt: `${heightDesc} and ${buildDesc}${shapeModifier}`, uiText: `${uiDesc}` };
+            return { mjPrompt: `${heightDesc} and ${buildDesc}${shapeModifier}`, uiText: uiDesc };
         }
 
-        function getUniqueColors(colorArray) {
-            let unique = [...new Set(colorArray)];
-            const fallbacks = ["Khaki", "Navy", "Charcoal"];
-            while (unique.length < 3) {
-                let f = fallbacks.pop();
-                if (!unique.includes(f)) unique.push(f);
-            }
-            return unique.slice(0, 3).join(" / ");
-        }
-
-        function generateCompleteLooks(shio, gender) {
+        // Generate Dossier
+        function generateCompleteLooks(gender) {
             const isMan = gender === 'man';
             const kemeja = isMan ? 'Shirt' : 'Blouse';
             const jas = isMan ? 'Blazer' : 'Chic Jacket';
             const celana = isMan ? 'Trousers' : 'Tailored Pants';
 
             return [
-                { id: "01", title: "BUSINESS MEETING", topItem: `Structured ${jas}`, botItem: `Tailored ${celana}`, shoeCol: shio.sColF, shoeTyp: shio.sTypF },
-                { id: "02", title: "SMART CASUAL", topItem: `Knit Polo`, botItem: `Chinos`, shoeCol: shio.sColF, shoeTyp: shio.sTypF },
-                { id: "03", title: "WEEKEND GETAWAY", topItem: `Cuban Collar ${kemeja}`, botItem: `Linen Pants`, shoeCol: shio.sColC, shoeTyp: shio.sTypC },
-                { id: "04", title: "DATE NIGHT", topItem: `Fitted ${kemeja}`, botItem: `Wool ${celana}`, shoeCol: shio.sColF, shoeTyp: shio.sTypF },
-                { id: "05", title: "OFFICE CASUAL", topItem: `Crewneck Sweater`, botItem: `Chinos`, shoeCol: shio.sColF, shoeTyp: shio.sTypF },
-                { id: "06", title: "EVENING EVENT", topItem: `Bomber Jacket`, botItem: `Casual Pants`, shoeCol: shio.sColC, shoeTyp: shio.sTypC }
+                { id: "01", title: "BUSINESS MEETING", topItem: `Structured ${jas}`, botItem: `Tailored ${celana}` },
+                { id: "02", title: "SMART CASUAL", topItem: `Knit Polo`, botItem: `Chinos` },
+                { id: "03", title: "WEEKEND ELEVATED", topItem: `Quarter-Zip Sweater`, botItem: `Tailored ${celana}` },
+                { id: "04", title: "CITY EXPLORER", topItem: `Bomber Jacket`, botItem: `Slim Fit Jeans` },
+                { id: "05", title: "VACATION READY", topItem: `Short Sleeve Knit Polo`, botItem: `Linen Trousers` },
+                { id: "06", title: "DATE NIGHT", topItem: `Merino Sweater`, botItem: `Tailored ${celana}` }
             ];
         }
 
+        // Penghilang Warna Ganda
+        function getUniqueColors(colorArray) {
+            return [...new Set(colorArray)].join(" / ");
+        }
+
+        // ================= KEKUATAN INTI: SUBMIT HANDLER & JSON BUILDER =================
         document.getElementById('dna-form').addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            // Ambil Nilai dari Form
             const dob = document.getElementById('dob').value;
             const gender = document.getElementById('gender').value;
             const blood = document.querySelector('input[name="blood"]:checked').value;
@@ -454,33 +434,37 @@
             
             if(!dob || !gender || !blood || !height || !weight || !shape) return;
 
+            // Kalkulasi
             const shioIndex = new Date(dob).getFullYear() % 12;
             const shio = shioData[shioIndex];
             const wetonData = getWetonData(dob);
             const sbj = gender === 'man' ? 'man' : 'woman';
-
             const posture = getBodyPosture(height, weight, gender, shape);
 
-            // 5 Top Colors (3 Shio + 2 Weton)
-            const topColors = `${shio.c1} / ${shio.c2} / ${shio.c3} / ${wetonData.pasaranObj.w1} / ${wetonData.pasaranObj.w2}`;
+            // Logika Warna
+            const topColorsRaw = [shio.c1, shio.c2, shio.c3, wetonData.pasaranObj.w1, wetonData.pasaranObj.w2];
+            const botColorsRaw = ["Navy", "Khaki", "Dark Grey", shio.c1]; // Diambil dari netral + warna shio ke-1
             
-            // 3 Bottom Colors (Shio1 + Shio2 + Weton Netral) -> Deduplikasi
-            const rawBotColors = [shio.cBot1, shio.cBot2, wetonData.pasaranObj.bNet];
-            const botColors = getUniqueColors(rawBotColors);
+            const topColorsString = getUniqueColors(topColorsRaw);
+            const finalBotColors = getUniqueColors(botColorsRaw);
 
             // Update UI
             document.getElementById('res-weton').innerText = wetonData.full;
             document.getElementById('res-shio').innerText = shio.nama;
             document.getElementById('res-blood').innerText = blood;
             document.getElementById('res-posture').innerText = posture.uiText;
-            document.getElementById('res-top-colors').innerText = topColors;
-            document.getElementById('res-bot-colors').innerText = botColors;
+            document.getElementById('res-top-colors').innerText = topColorsString;
+            document.getElementById('res-bot-colors').innerText = finalBotColors;
 
-            const dossier = generateCompleteLooks(shio, gender);
+            // Generate Dossier
+            const dossier = generateCompleteLooks(gender);
             const container = document.getElementById('look-details-container');
             container.innerHTML = '';
+            
+            let jsonPanels = [];
 
-            dossier.forEach((look) => {
+            dossier.forEach((look, index) => {
+                // UI Dossier
                 container.innerHTML += `
                     <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 shadow-sm relative overflow-hidden">
                         <div class="absolute top-0 left-0 w-1 h-full bg-brand-accent"></div>
@@ -488,27 +472,109 @@
                             <span class="text-brand-accent font-black text-lg">${look.id}</span>
                             <p class="font-serif font-bold text-gray-900 text-sm uppercase tracking-wider">${look.title}</p>
                         </div>
-                        <div class="space-y-1 ml-1 text-justify-custom text-xs text-gray-800">
-                            <p><span class="w-16 font-bold text-gray-500 uppercase inline-block">Top:</span> ${look.topItem}</p>
-                            <p><span class="w-16 font-bold text-gray-500 uppercase inline-block">Bottom:</span> ${look.botItem}</p>
-                            <p><span class="w-16 font-bold text-gray-500 uppercase inline-block">Shoes:</span> ${look.shoeCol} ${look.shoeTyp}</p>
+                        <div class="space-y-2 ml-1 text-justify-custom">
+                            <div class="flex items-start text-xs text-gray-800">
+                                <span class="w-16 font-bold text-gray-500 uppercase shrink-0">Top:</span>
+                                <span>${look.topItem}</span>
+                            </div>
+                            <div class="flex items-start text-xs text-gray-800">
+                                <span class="w-16 font-bold text-gray-500 uppercase shrink-0">Bottom:</span>
+                                <span>${look.botItem}</span>
+                            </div>
+                            <div class="flex items-start text-xs text-gray-800">
+                                <span class="w-16 font-bold text-gray-500 uppercase shrink-0">Shoes:</span>
+                                <span>${index % 2 === 0 ? shio.sColF : shio.sColC} ${index % 2 === 0 ? shio.sTypF : shio.sTypC}</span>
+                            </div>
                         </div>
                     </div>
                 `;
+
+                // Menyusun Data untuk JSON
+                jsonPanels.push({
+                    "number": look.id,
+                    "outfit_name": look.title,
+                    "details": {
+                        "Top": look.topItem,
+                        "Bottom": look.botItem,
+                        "Shoes": `${index % 2 === 0 ? shio.sColF : shio.sColC} ${index % 2 === 0 ? shio.sTypF : shio.sTypC}`
+                    }
+                });
             });
 
-            // Prompt MJ Master (Legend Box Strategy & Postur)
-            const imgPrompt = `A high-end fashion editorial lookbook, 2x3 grid collage showing 6 COMPLETELY DIFFERENT full-body portraits of the exact SAME ${sbj} (${posture.mjPrompt}). Ensure the body shape is accurately represented as a ${posture.mjPrompt} in all panels. Warm beige studio background. INCLUDE a large elegant header text "DNA DRESS CODE" at the top. \n\nCRITICAL TYPOGRAPHY LAYOUT: Place a dedicated text block at the absolute BOTTOM of each panel (under the model's feet). Do NOT use arrows or pointing lines. Format the text for the 6 panels EXACTLY like this (substitute with the correct items):\n01 BUSINESS MEETING\nTop: Structured Blazer\nBottom: Tailored Trousers\nShoes: Dark Brown Loafers \n\nCRITICAL LEGEND BOX: Create a stylish horizontal text box at the very bottom center of the entire image. Write exactly this text inside the box: "DNA CAPSULE WARDROBE | Top Colors: ${topColors} | Bottom Colors: ${botColors}" \n\nStyle: ${shio.style} layered with ${bData[blood]}. DO NOT use cursive. --no deformed hands, cursive text, script font, paragraph text, messy writing, cloned outfits, arrows, pointing lines --ar 3:4 --style raw --v 6.0 --cref [URL_FOTO_KAMU] --cw 100`;
+            // ================= PEMBENTUKAN JSON PROMPT MASTER =================
+            const mjJsonPrompt = {
+                "image_structure": {
+                    "layout_type": "2x3 grid collage",
+                    "total_panels": 6,
+                    "panel_flow": "six COMPLETELY DIFFERENT full-body portraits"
+                },
+                "main_subject": {
+                    "character_consistency": `single exact SAME ${sbj} across all panels`,
+                    "physical_description": posture.mjPrompt,
+                    "required_detail": `accurate representation of this body shape (${posture.mjPrompt}) in all panels`,
+                    "cref_reference": "[URL_FOTO_KAMU]",
+                    "cw_strength": 100
+                },
+                "header": {
+                    "text": "DNA DRESS CODE",
+                    "placement": "large, elegant text block at the absolute top of entire image",
+                    "style": "elegant, no cursive"
+                },
+                "panel_layout_and_typography": {
+                    "per_panel_text_block_placement": "absolute BOTTOM of each panel, directly under the model's feet",
+                    "layout_restrictions": [
+                        "do NOT use arrows",
+                        "do NOT use pointing lines"
+                    ]
+                },
+                "panel_details": jsonPanels,
+                "overall_legend_box": {
+                    "type": "stylish horizontal text box",
+                    "placement": "very bottom center of the entire image",
+                    "exact_text": `DNA CAPSULE WARDROBE | Top Colors: ${topColorsString} | Bottom Colors: ${finalBotColors}`
+                },
+                "overall_style_and_aesthetics": {
+                    "description": "high-end fashion editorial lookbook",
+                    "fashion_vibe": `${shio.style} layered with ${bData[blood]}`,
+                    "background": "warm beige studio",
+                    "typography_restrictions": [
+                        "DO NOT use cursive text",
+                        "DO NOT use script fonts",
+                        "DO NOT use paragraph text",
+                        "DO NOT use messy writing"
+                    ]
+                },
+                "negative_constraints": {
+                    "objects_to_avoid": ["arrows", "pointing lines"],
+                    "actions_to_avoid": ["cloned outfits"],
+                    "other_avoid": ["deformed hands"]
+                }
+            };
 
-            document.getElementById('hidden-img-prompt').value = imgPrompt;
-            document.getElementById('display-img-prompt').innerHTML = imgPrompt.replace('[URL_FOTO_KAMU]', '<span class="prompt-placeholder">[URL_FOTO_KAMU]</span>').replace(/\n/g, '<br>');
+            // Mengubah objek JS menjadi string JSON yang indah (indentasi 2 spasi)
+            let jsonString = JSON.stringify(mjJsonPrompt, null, 2);
+            
+            // Menambahkan parameter wajib Midjourney di akhir string
+            let finalOutputString = jsonString + "\n\n--ar 3:4 --style raw --v 6.0 --cw 100";
 
+            // Simpan format murni untuk dicopy
+            document.getElementById('hidden-img-prompt').value = finalOutputString;
+            
+            // Tampilkan di layar dengan styling <pre>
+            // Highlight khusus URL_FOTO_KAMU agar mudah dicari
+            let displayHtml = finalOutputString.replace(
+                '[URL_FOTO_KAMU]', 
+                '<span class="bg-yellow-200 text-yellow-800 font-bold px-1 rounded">[URL_FOTO_KAMU]</span>'
+            );
+            document.getElementById('display-img-prompt').innerHTML = displayHtml;
+
+            // Transisi UI
             document.getElementById('input-section').classList.add('hidden');
             document.getElementById('result-section').classList.remove('hidden');
             window.scrollTo({ top: document.getElementById('result-section').offsetTop - 50, behavior: 'smooth' });
         });
 
-        // Export copy function to global scope since it's called from HTML attribute
+        // ================= HELPER FUNCTIONS =================
         window.copyPrompt = function() {
             const txt = document.getElementById('hidden-img-prompt').value;
             const btn = document.getElementById('copy-btn-img');
@@ -537,13 +603,18 @@
                 btn.innerHTML = ori; 
                 btn.classList.remove('bg-green-600', 'border-green-500');
             }, 2000);
-        };
+        }
 
         window.resetApp = function() {
+            document.getElementById('dna-form').reset();
+            // Reset dropdown shape state
+            document.getElementById('body-shape').disabled = true;
+            document.getElementById('body-shape').innerHTML = '<option value="" disabled selected>Pilih Gender Terlebih Dahulu</option>';
+            
             document.getElementById('result-section').classList.add('hidden');
             document.getElementById('input-section').classList.remove('hidden');
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        };
+        }
     </script>
 </body>
 </html>
